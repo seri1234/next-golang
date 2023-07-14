@@ -9,7 +9,7 @@ export const siteTitle = 'Next.js Sample Website';
 
 export default function Layout({ children, home }) {
   return (
-    <div className={styles.container}>
+    <div >
       <Head>
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -25,39 +25,41 @@ export default function Layout({ children, home }) {
         <meta name="og:title" content={siteTitle} />
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
-      <header className={styles.header}>
-        {home ? (
-          <>
-            <Image
-              priority
-              src="/images/profile.jpg"
-              className={utilStyles.borderCircle}
-              height={144}
-              width={144}
-              alt=""
-            />
-            <h1 className={utilStyles.heading2Xl}>{name}</h1>
-          </>
-        ) : (
-          <>
-            <Link href="/">
-              <Image
-                priority
-                src="/images/profile.jpg"
-                className={utilStyles.borderCircle}
-                height={108}
-                width={108}
-                alt=""
-              />
-            </Link>
-            <h2 className={utilStyles.headingLg}>
-              <Link href="/" className={utilStyles.colorInherit}>
-                {name}
+      <div className={styles.container}>
+      <header className={styles.site_header} >
+      <div className={styles.site_header_wrapper}>
+        <Link className={styles.home} href="/">
+          Home
+        </Link>
+        <nav>
+          <ul className={styles.nav_wrapper}>
+            <li className={styles.nav_item_li}>
+              <Link className={styles.nav_item_a}  href="/">
+                  Profile
+              </Link></li>
+            <li className={styles.nav_item_li}>
+              <Link className={styles.nav_item_a}  href="/">
+                  Profile
+              </Link></li>
+            <li className={styles.nav_item_li}>
+              <Link className={styles.nav_item_a}  href="/">
+                  Profile
               </Link>
-            </h2>
-          </>
-        )}
-      </header>
+            </li>
+          <li className={styles.nav_item_li}>
+              <Link className={styles.nav_item_a}  href="/">
+                  Profile
+              </Link>
+            </li>
+          <li className={styles.nav_item_li}>
+              <Link className={styles.nav_item_a}  href="/">
+                  Profile
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </header>
       <main>
         {children}</main>
       {!home && (
@@ -65,6 +67,7 @@ export default function Layout({ children, home }) {
           <Link href="/">← Back to home</Link>
         </div>
       )}
+    </div>
     </div>
   );
 }
