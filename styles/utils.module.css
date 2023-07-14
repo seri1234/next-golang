@@ -45,8 +45,40 @@
 
 .listItem {
   margin: 0 0 1.25rem;
+  background-color: rgb(31 41 55);
+  list-style-type: none;
+  padding-left: 1rem;
+  padding-top: 1rem;
+  border-radius:0.5rem;
+}
+.listItem:hover {
+  background-color: rgb(46, 56, 70);
+  transition-duration: .4S;
 }
 
 .lightText {
   color: #666;
+}
+
+.a{
+  display: block;
+  height: 100%;
+  position: relative;
+  top: -40px;
+}
+
+@media (min-width: 768px){
+  .grid {
+    display:grid;
+    grid-template-columns: repeat(2,minmax(0,1fr));
+    gap: 2rem;
+    padding-left: 0;
+  }
+}
+@media ((max-width: 767px)){
+  .grid {
+    display:grid;
+    gap: 1.5rem;
+    padding-left: 0;
+  }
 }

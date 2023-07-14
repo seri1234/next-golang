@@ -36,14 +36,6 @@ export default function Layout({ children, home }) {
             <li className={styles.nav_item_li}>
               <Link className={styles.nav_item_a}  href="/">
                   Profile
-              </Link></li>
-            <li className={styles.nav_item_li}>
-              <Link className={styles.nav_item_a}  href="/">
-                  Profile
-              </Link></li>
-            <li className={styles.nav_item_li}>
-              <Link className={styles.nav_item_a}  href="/">
-                  Profile
               </Link>
             </li>
           <li className={styles.nav_item_li}>

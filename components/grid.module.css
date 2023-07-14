@@ -1,0 +1,12 @@
+.grid_item_link {
+  color: rgb(229 231 235);
+  position: relative;
+  top: 30%;
+}
+
+
+.lightText {
+  color: #666;
+  position: relative;
+  top: 65px;
+}
