@@ -5,7 +5,7 @@ import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
 
 export async function getStaticProps({ params }) {
-  // Add the "await" keyword like this:
+
   const postData = await getPostData(params.id);
 
   return {
@@ -16,7 +16,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllPostIds();
+  const paths = await getAllPostIds();
   return {
     paths,
     fallback: false,
@@ -32,7 +32,7 @@ export default function Post({ postData }) {
       <article>
         <h1 className={utilStyles.headingXl}>{postData.title}</h1>
         <div className={utilStyles.lightText}>
-          <Date dateString={postData.date} />
+          <Date dateString={postData.createdAt} />
         </div>
         <div className={utilStyles.contentText} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
       </article>

@@ -22,14 +22,14 @@ export default function Home({ allPostsData }) {
       {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <ul className={utilStyles.grid}>
-          {allPostsData.map(({ id, date, title }) => (
+          {allPostsData.map(({ id, createdAt, title }) => (
             <li className={utilStyles.listItem} key={id}>
               <Link className={utilStyles.a} href={`/posts/${id}`}>
                 <h2 className={gridstyles.grid_item_link} >
                   {title}
                 </h2>
                 <small className={gridstyles.lightText}>
-                  <Date dateString={date} />
+                  <Date dateString={createdAt} />
                 </small>
               </Link>
               <br />
