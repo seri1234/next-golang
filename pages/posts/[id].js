@@ -3,6 +3,7 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 import Head from 'next/head';
 import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
+import { marked } from 'marked';
 
 export async function getStaticProps({ params }) {
 
@@ -34,7 +35,7 @@ export default function Post({ postData }) {
         <div className={utilStyles.lightText}>
           <Date dateString={postData.createdAt} />
         </div>
-        <div className={utilStyles.contentText} dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
+        <div className={utilStyles.contentText} dangerouslySetInnerHTML={{ __html: marked.parse(postData.contentHtml)}}  />
       </article>
     </Layout>
   );
