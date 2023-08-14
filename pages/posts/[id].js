@@ -4,6 +4,8 @@ import Head from 'next/head';
 import Date from '../../components/date';
 import utilStyles from '../../styles/utils.module.css';
 import { marked } from 'marked';
+import hljs from 'highlight.js';
+import "highlight.js/styles/github.css";
 
 export async function getStaticProps({ params }) {
 
@@ -25,6 +27,12 @@ export async function getStaticPaths() {
 }
 
 export default function Post({ postData }) {
+  marked.setOptions({
+    highlight: (code, lang) => {
+      return hljs.highlightAuto(code, [lang]).value;
+    },
+  });
+
   return (
     <Layout>
       <Head>
