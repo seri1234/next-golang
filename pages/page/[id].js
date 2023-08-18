@@ -1,14 +1,17 @@
-import Layout from '../components/layout';
-import utilStyles from '../styles/utils.module.css';
-import { getSortedPostsData } from '../lib/posts';
-import gridstyles from '../components/grid.module.css';
+import Layout from '../../components/layout';
+import utilStyles from '../../styles/utils.module.css';
+import { getSortedPostsData, getAllPostIds } from '../../lib/posts';
+import gridstyles from '../../components/grid.module.css';
 import Link from 'next/link';
-import Date from '../components/date';
-import Pagenation from '../components/pagenation';
+import Date from '../../components/date';
+import Pagenation from '../../components/pagenation';
 
-export async function getStaticProps() {
-  const offset = "0";
+export async function getStaticProps({params}) {
+  const id = params.id;
+  const perPage = process.env.NEXT_PUBLIC_PER_PAGE
+  const offset = (id - 1) * perPage
   const allPostsData = await getSortedPostsData(offset);
+
   return {
     props: {
       allPostsData,
@@ -16,9 +19,22 @@ export async function getStaticProps() {
   };
 }
 
-export default function Home({ allPostsData }) {
+export async function getStaticPaths() {
+    const repos = await getAllPostIds();
+
+    const perPage = process.env.NEXT_PUBLIC_PER_PAGE;
+    const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+    const paths = range(1, Math.ceil(repos[0].params.totalCount / perPage)).map((repo) => `/page/${repo}`);
+    console.log(paths)
+
+
+    return { paths, fallback: false };
+  }
+  
+
+export default function BlogPage({ allPostsData }) {
   return (
-    <Layout home>
+    <Layout BlogPageId >
       {/* Keep the existing code here */}
 
       {/* Add this <section> tag below the existing <section> tag */}
