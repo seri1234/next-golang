@@ -32,9 +32,6 @@ export async function getStaticPaths() {
 export default function BlogPage({ allPostsData,id }) {
   return (
     <Layout BlogPageId >
-      {/* Keep the existing code here */}
-
-      {/* Add this <section> tag below the existing <section> tag */}
       <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
         <ul className={utilStyles.grid}>
           {allPostsData.sortData.map(({ id, createdAt, title }) => (
