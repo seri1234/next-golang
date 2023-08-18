@@ -15,6 +15,7 @@ export async function getStaticProps({params}) {
   return {
     props: {
       allPostsData,
+      id,
     },
   };
 }
@@ -25,14 +26,10 @@ export async function getStaticPaths() {
     const perPage = process.env.NEXT_PUBLIC_PER_PAGE;
     const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
     const paths = range(1, Math.ceil(repos[0].params.totalCount / perPage)).map((repo) => `/page/${repo}`);
-    console.log(paths)
-
-
     return { paths, fallback: false };
   }
-  
 
-export default function BlogPage({ allPostsData }) {
+export default function BlogPage({ allPostsData,id }) {
   return (
     <Layout BlogPageId >
       {/* Keep the existing code here */}
@@ -54,7 +51,7 @@ export default function BlogPage({ allPostsData }) {
             </li>
           ))}
         </ul>
-        <Pagenation totalCount={allPostsData.totalCount} />
+        <Pagenation totalCount={allPostsData.totalCount} id={id} />
       </section>
     </Layout>
   );
